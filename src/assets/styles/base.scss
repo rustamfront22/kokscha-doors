@@ -1,0 +1,126 @@
+#app {
+  @apply flex flex-col h-full;
+}
+
+.footer {
+  @apply mt-auto;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+html {
+  @apply h-full;
+  scroll-behavior: smooth;
+
+}
+
+.page {
+  padding-left: 84px;
+}
+
+@media (max-width:1024px) {
+  .page {
+    padding-left: 72px;
+  }
+}
+
+@media (max-width:768px) {
+  .page {
+    padding-left: 0;
+  }
+}
+
+:root {
+  --bg: #FAFAF8;
+  /* молочный */
+  --surface: #FFFFFF;
+  /* карточки */
+  --text: #111111;
+  /* основной */
+  --muted: #6B7280;
+  /* вторичный */
+  --border: #E7E5E4;
+  /* рамки */
+  --gold: #C8A165;
+  /* акцент */
+  --gold-hover: #B88F56;
+  /* hover */
+  --shadow: 0 10px 30px rgba(0, 0, 0, .06);
+  --radius: 16px;
+}
+
+:root {
+  --side-w: 84px;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --side-w: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --side-w: 0px;
+  }
+}
+
+.page {
+  padding-left: var(--side-w);
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* чтобы не появлялись “сдвиги/полосы” */
+/* Titles */
+.title {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  transition: .2s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: #1b120d;
+}
+
+.btn-primary:hover {
+  background: var(--gold-hover);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(200, 161, 101, .55);
+  color: #1b120d;
+}
+
+.btn-outline:hover {
+  background: rgba(200, 161, 101, .12);
+}

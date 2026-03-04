@@ -1,0 +1,74 @@
+.footer {
+  @apply bg-secondary text-white;
+
+  &__content {
+    @apply grid gap-8 py-10;
+    grid-template-columns: 1.2fr 1fr 1.2fr 1fr;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  svg {
+    @apply text-3xl;
+  }
+
+  &__logo {
+    @apply flex flex-col gap-3;
+
+    a {
+      @apply inline-flex items-center gap-2;
+    }
+  }
+
+  &__desc {
+    @apply text-sm text-white/80 leading-relaxed;
+  }
+
+  &__menu,
+  &__categories,
+  &__contacts {
+    h3 {
+      @apply font-rubik font-medium mb-4;
+    }
+
+    ul li {
+      @apply hover:text-hover transition mb-2 font-light font-rubik;
+    }
+  }
+
+  /* Категории в футере (компонент Category) */
+  &__categories {
+    ul {
+      @apply grid grid-cols-2 gap-x-10 gap-y-2;
+
+      @media (max-width: 425px) {
+        @apply grid-cols-1;
+      }
+
+      li {
+        @apply cursor-pointer;
+      }
+    }
+  }
+
+  &__contacts {
+    p {
+      @apply mb-2 font-light font-rubik text-white/80;
+    }
+  }
+
+  &__btn {
+    @apply mt-4 px-4 py-3 rounded-lg font-rubik font-medium bg-hover text-secondary;
+    @apply hover:opacity-90 transition;
+  }
+
+  &__bottom {
+    @apply border-t border-white/10 py-4 text-center text-sm text-white/70;
+  }
+}

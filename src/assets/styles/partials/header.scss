@@ -1,0 +1,72 @@
+.header {
+  @apply fixed top-0 left-0 w-full z-50 transition-all duration-300;
+
+  /* по умолчанию прозрачный (первый экран) */
+  background: transparent;
+
+  &__content {
+    @apply flex justify-between items-center py-6;
+  }
+
+  /* логотип */
+  .logo {
+    @apply flex items-center gap-3 font-bold text-lg text-white;
+  }
+
+  /* меню */
+  &__navbar {
+    ul {
+      @apply flex gap-10;
+
+      li {
+        a {
+          @apply text-white font-medium transition opacity-90;
+        }
+
+        a:hover {
+          @apply opacity-100;
+        }
+      }
+    }
+  }
+
+  /* кнопка справа */
+  &__contact {
+    .call-btn {
+      @apply px-5 py-2 rounded-xl font-semibold transition;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: white;
+      backdrop-filter: blur(6px);
+    }
+
+    .call-btn:hover {
+      background: rgba(255,255,255,0.16);
+    }
+  }
+
+  /* когда проскроллил вниз */
+  &.scrolled {
+    @apply shadow-md;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+
+    .logo {
+      @apply text-black;
+    }
+
+    .header__navbar a {
+      @apply text-black opacity-80;
+    }
+
+    .header__navbar a:hover {
+      @apply opacity-100;
+    }
+
+    .call-btn {
+      background: #c8a165;
+      color: #1b120d;
+      border: none;
+    }
+  }
+}
