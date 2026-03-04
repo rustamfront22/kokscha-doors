@@ -124,6 +124,7 @@
   display: flex;
   align-items: center;
   padding: 0 8%;
+  padding-left: 110px;
 }
 
 @media (max-width: 1024px) {

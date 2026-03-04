@@ -273,18 +273,19 @@ async function onSubmit() {
 .lead-wrap {
   position: relative;
   padding: clamp(24px, 4vw, 60px) 0;
+  overflow: hidden;          /* важно */
+  background: #0b0b0c;       /* чтобы не было белого “под” формой */
 }
 
 .lead-bg {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  background:
-    radial-gradient(900px 520px at 12% 12%, rgba(200,161,101,.20), transparent 60%),
-    radial-gradient(760px 480px at 88% 18%, rgba(200,161,101,.14), transparent 62%),
-    radial-gradient(900px 600px at 50% 92%, rgba(255,255,255,.10), transparent 60%),
-    #0b0b0c;
-  overflow: hidden;
+  z-index: 0;                /* было -1 → делаем 0 */
+}
+
+.lead-form {
+  position: relative;
+  z-index: 1;                /* чтобы форма была поверх фона */
 }
 
 .glow {

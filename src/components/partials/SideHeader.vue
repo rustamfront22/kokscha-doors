@@ -201,22 +201,49 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
+  /* 1) сам aside тоже делаем row */
   .side {
-    width: 64px;
-    height: auto;
-    top: 12px;
-    left: 12px;
-    bottom: auto;
-    border-right: 0;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    background: rgba(255, 255, 255, 0.65);
-    border-radius: 18px;
-    padding: 10px 8px;
-    gap: 10px;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    top: calc(12px + env(safe-area-inset-top)) !important;
+    left: 12px !important;
+
+    padding: 8px 10px !important;
+    gap: 8px !important;
+
+    border-radius: 16px !important;
   }
+
+  /* 2) блок с кнопками — строго в ряд */
+  .side__top {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    padding-top: 0 !important;
+  }
+
+  /* 3) скрываем всё лишнее */
   .side__scroll,
   .side__label,
-  .side__bottom { display: none; }
+  .side__bottom {
+    display: none !important;
+  }
+
+  /* 4) размеры кнопок */
+  .side__logo,
+  .side__burger {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+  }
 }
 
 .side__top {
@@ -323,10 +350,10 @@ onUnmounted(() => {
 }
 @media (max-width: 768px) {
   .contact-fab {
-    top: auto;
-    bottom: 14px;
     right: 14px;
-    font-size: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    top: auto;
+    z-index: 4500;
   }
 }
 
@@ -428,6 +455,24 @@ onUnmounted(() => {
 .w-full { width: 100%; }
 .mt-3 { margin-top: 12px; }
 
+@media (max-width: 768px) {
+  .hero__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.88) 0%,
+      rgba(255,255,255,0.55) 35%,
+      rgba(255,255,255,0.10) 70%,
+      rgba(0,0,0,0.05) 100%
+    );
+  }
+}
+
+
+@media (max-width: 380px) {
+  .hero__stats {
+    grid-template-columns: 1fr;   /* на очень маленьких — в столбик */
+  }
+}
 /* Transitions */
 .fade-enter-active,
 .fade-leave-active { transition: opacity 0.2s ease; }
