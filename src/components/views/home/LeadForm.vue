@@ -1,7 +1,8 @@
-<!-- LeadForm.vue (styled, but SAME working logic as your original) -->
+<!-- LeadForm.vue (same working logic + embedded mode for modal/panel) -->
 <template>
-  <section class="lead-wrap">
-    <div class="lead-bg">
+  <section class="lead-wrap" :class="{ 'is-embedded': embedded }">
+    <!-- background only for normal page section -->
+    <div v-if="!embedded" class="lead-bg">
       <div class="glow glow-a"></div>
       <div class="glow glow-b"></div>
       <div class="grid"></div>
@@ -66,7 +67,6 @@
         </div>
       </div>
 
-      <!-- ✅ DOBOR input (как у тебя, но визуально красивее) -->
       <div class="form-group">
         <label for="dobor">Добор</label>
         <input
@@ -133,6 +133,10 @@
 <script setup>
 import { ref, reactive } from "vue";
 
+defineProps({
+  embedded: { type: Boolean, default: false }, // ✅ для панели “Написать нам”
+});
+
 // Priority options — must match backend allowed list exactly
 const PRIORITY_OPTIONS = [
   "Качество и надежность",
@@ -142,7 +146,7 @@ const PRIORITY_OPTIONS = [
   "Надежность и безопасность",
 ];
 
-// API base URL: set in .env as VITE_API_URL. Direct connection to backend (no proxy).
+// API base URL: set in .env as VITE_API_URL.
 const API_BASE =
   typeof import.meta !== "undefined" &&
   import.meta.env &&
@@ -157,7 +161,7 @@ const form = reactive({
   doorType: "",
   length: null,
   width: null,
-  dobor: "", // ✅ будет уходить как раньше
+  dobor: "",
   priorities: [],
   language: "ru",
 });
@@ -169,11 +173,8 @@ const priorityError = ref("");
 
 function togglePriority(opt) {
   const idx = form.priorities.indexOf(opt);
-  if (idx >= 0) {
-    form.priorities.splice(idx, 1);
-  } else if (form.priorities.length < 2) {
-    form.priorities.push(opt);
-  }
+  if (idx >= 0) form.priorities.splice(idx, 1);
+  else if (form.priorities.length < 2) form.priorities.push(opt);
   priorityError.value = "";
 }
 
@@ -181,32 +182,21 @@ function validate() {
   priorityError.value = "";
   submitError.value = "";
 
-  if (!form.fullName?.trim()) {
-    submitError.value = "Заполните ФИО.";
-    return false;
-  }
-  if (!form.doorType) {
-    submitError.value = "Выберите тип двери.";
-    return false;
-  }
+  if (!form.fullName?.trim()) return (submitError.value = "Заполните ФИО."), false;
+  if (!form.doorType) return (submitError.value = "Выберите тип двери."), false;
+
   const lengthNum = Number(form.length);
   const widthNum = Number(form.width);
-  if (!Number.isFinite(lengthNum) || lengthNum <= 0) {
-    submitError.value = "Введите корректную длину (число больше 0).";
-    return false;
-  }
-  if (!Number.isFinite(widthNum) || widthNum <= 0) {
-    submitError.value = "Введите корректную ширину (число больше 0).";
-    return false;
-  }
-  if (form.priorities.length !== 2) {
-    priorityError.value = "Выберите ровно 2 приоритета.";
-    return false;
-  }
-  if (!form.phoneNumber?.trim()) {
-    submitError.value = "Введите телефон.";
-    return false;
-  }
+  if (!Number.isFinite(lengthNum) || lengthNum <= 0)
+    return (submitError.value = "Введите корректную длину (число больше 0)."), false;
+  if (!Number.isFinite(widthNum) || widthNum <= 0)
+    return (submitError.value = "Введите корректную ширину (число больше 0)."), false;
+
+  if (form.priorities.length !== 2)
+    return (priorityError.value = "Выберите ровно 2 приоритета."), false;
+
+  if (!form.phoneNumber?.trim()) return (submitError.value = "Введите телефон."), false;
+
   return true;
 }
 
@@ -219,7 +209,6 @@ async function onSubmit() {
 
   const measurements = `${form.length} x ${form.width}`;
 
-  // ✅ body 1:1 как в твоём рабочем варианте
   const body = {
     fullName: form.fullName.trim(),
     doorType: form.doorType,
@@ -233,7 +222,6 @@ async function onSubmit() {
   };
 
   const url = `${API_BASE}/api/leads`;
-  console.log("Submitting to:", url, body);
 
   try {
     const res = await fetch(url, {
@@ -259,9 +247,7 @@ async function onSubmit() {
       submitError.value = data.error || "Ошибка сервера. Попробуйте позже.";
     }
   } catch (err) {
-    console.error("Lead submit error:", err);
-    submitError.value =
-      "Ошибка сети. Проверьте подключение и попробуйте снова.";
+    submitError.value = "Ошибка сети. Проверьте подключение и попробуйте снова.";
   } finally {
     loading.value = false;
   }
@@ -269,66 +255,61 @@ async function onSubmit() {
 </script>
 
 <style scoped lang="scss">
-/* ============ Background wrapper ============ */
+/* важное: чтобы не было горизонтального “плавания” */
+.lead-wrap,
+.lead-form {
+  box-sizing: border-box;
+}
+.lead-wrap :deep(*) {
+  box-sizing: border-box;
+}
+
+/* ============ Wrapper ============ */
 .lead-wrap {
   position: relative;
   padding: clamp(24px, 4vw, 60px) 0;
-  overflow: hidden;          /* важно */
-  background: #0b0b0c;       /* чтобы не было белого “под” формой */
+  overflow-x: clip;
 }
 
+/* ✅ режим внутри панели */
+.lead-wrap.is-embedded {
+  padding: 0;
+}
+
+/* ============ Background (only normal) ============ */
 .lead-bg {
   position: absolute;
   inset: 0;
-  z-index: 0;                /* было -1 → делаем 0 */
+  z-index: -1;
+  background:
+    radial-gradient(900px 520px at 12% 12%, rgba(200,161,101,.20), transparent 60%),
+    radial-gradient(760px 480px at 88% 18%, rgba(200,161,101,.14), transparent 62%),
+    radial-gradient(900px 600px at 50% 92%, rgba(255,255,255,.10), transparent 60%),
+    #0b0b0c;
+  overflow: hidden;
 }
 
-.lead-form {
-  position: relative;
-  z-index: 1;                /* чтобы форма была поверх фона */
+.glow { position: absolute; width: 520px; height: 520px; filter: blur(30px); opacity: 0.35; pointer-events: none; }
+.glow-a { left: -160px; top: 120px; background: radial-gradient(circle, rgba(200,161,101,.72), transparent 65%); }
+.glow-b { right: -160px; top: 220px; background: radial-gradient(circle, rgba(200,161,101,.52), transparent 65%); }
+.grid { position: absolute; inset: 0; opacity: 0.18;
+  background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 48px 48px; mask-image: radial-gradient(circle at 50% 35%, black 45%, transparent 75%);
 }
-
-.glow {
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  filter: blur(30px);
-  opacity: 0.35;
-  pointer-events: none;
-}
-.glow-a {
-  left: -160px;
-  top: 120px;
-  background: radial-gradient(circle, rgba(200,161,101,.72), transparent 65%);
-}
-.glow-b {
-  right: -160px;
-  top: 220px;
-  background: radial-gradient(circle, rgba(200,161,101,.52), transparent 65%);
-}
-.grid {
-  position: absolute;
-  inset: 0;
-  opacity: 0.18;
-  background-image:
-    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(circle at 50% 35%, black 45%, transparent 75%);
-}
-.noise {
-  position: absolute;
-  inset: 0;
-  opacity: 0.06;
+.noise { position: absolute; inset: 0; opacity: 0.06;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
 }
 
-/* ============ Card form ============ */
+/* ============ Form card ============ */
 .lead-form {
-  width: min(760px, calc(100% - 40px));
+  /* ✅ больше никаких calc(100% - …) → только 100% + max-width */
+  width: 100%;
+  max-width: 760px;
   margin: 0 auto;
+
   border-radius: 24px;
-  padding: clamp(18px, 3vw, 28px);
+  padding: clamp(16px, 3vw, 28px);
+
   background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
   border: 1px solid rgba(255,255,255,.12);
   backdrop-filter: blur(16px);
@@ -336,50 +317,28 @@ async function onSubmit() {
   color: rgba(255,255,255,.92);
 }
 
-@media (max-width: 768px) {
-  .lead-form { width: calc(100% - 28px); }
-}
-@media (max-width: 420px) {
-  .lead-form { width: calc(100% - 20px); }
+/* ✅ внутри панели — форма должна быть по ширине панели */
+.lead-wrap.is-embedded .lead-form {
+  max-width: none;
+  margin: 0;
+  border-radius: 18px;
 }
 
+/* ============ Header ============ */
 .head { margin-bottom: 14px; }
 .badge {
-  display: inline-flex;
-  padding: 7px 12px;
-  border-radius: 999px;
-  font-weight: 900;
-  font-size: 12px;
+  display: inline-flex; padding: 7px 12px; border-radius: 999px;
+  font-weight: 900; font-size: 12px;
   color: rgba(255,255,255,.84);
   background: rgba(200,161,101,.16);
   border: 1px solid rgba(200,161,101,.22);
 }
-.title {
-  margin-top: 10px;
-  font-size: clamp(20px, 3vw, 34px);
-  font-weight: 1000;
-  line-height: 1.12;
-}
-.subtitle {
-  margin-top: 8px;
-  color: rgba(255,255,255,.68);
-  line-height: 1.7;
-  font-size: 14px;
-}
+.title { margin-top: 10px; font-size: clamp(18px, 3vw, 30px); font-weight: 1000; line-height: 1.12; }
+.subtitle { margin-top: 8px; color: rgba(255,255,255,.68); line-height: 1.7; font-size: 14px; }
 
-/* ============ Inputs ============ */
-.form-group {
-  display: grid;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-label {
-  font-size: 12.5px;
-  font-weight: 800;
-  color: rgba(255,255,255,.72);
-}
-
+/* ============ Fields ============ */
+.form-group { display: grid; gap: 8px; margin-bottom: 14px; }
+label { font-size: 12.5px; font-weight: 800; color: rgba(255,255,255,.72); }
 .required { color: rgba(200,161,101,.95); }
 
 input, select {
@@ -390,9 +349,8 @@ input, select {
   color: rgba(255,255,255,.92);
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.12);
-  transition: box-shadow .2s ease, border-color .2s ease, transform .2s ease, background .2s ease;
+  transition: box-shadow .2s ease, border-color .2s ease, background .2s ease;
 }
-
 input::placeholder { color: rgba(255,255,255,.40); }
 
 input:focus, select:focus {
@@ -401,41 +359,19 @@ input:focus, select:focus {
   background: rgba(255,255,255,.08);
 }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-@media (max-width: 640px) {
-  .form-row { grid-template-columns: 1fr; }
-}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
 
-.hint {
-  font-size: 12px;
-  color: rgba(255,255,255,.55);
-  margin-top: -2px;
-}
+.hint { font-size: 12px; color: rgba(255,255,255,.55); margin-top: -2px; }
 
 /* ============ Priority ============ */
-.priority-hint {
-  font-size: 12px;
-  color: rgba(255,255,255,.55);
-  margin-top: -4px;
-}
-
-.priority-buttons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
+.priority-hint { font-size: 12px; color: rgba(255,255,255,.55); margin-top: -4px; }
+.priority-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
 
 .priority-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 40px;
-  padding: 0 12px;
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 40px;
+  padding: 8px 12px;
   border-radius: 999px;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.12);
@@ -443,51 +379,29 @@ input:focus, select:focus {
   font-weight: 900;
   font-size: 12.5px;
   cursor: pointer;
-  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
 }
-.priority-btn:hover {
-  transform: translateY(-1px);
-  background: rgba(255,255,255,.10);
-}
+.priority-btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.10); }
 .priority-btn .dot {
-  width: 10px; height: 10px;
-  border-radius: 999px;
+  width: 10px; height: 10px; border-radius: 999px;
   background: rgba(255,255,255,.25);
   border: 1px solid rgba(255,255,255,.18);
 }
-.priority-btn.selected {
-  background: rgba(200,161,101,.18);
-  border-color: rgba(200,161,101,.30);
-  box-shadow: 0 18px 60px rgba(200,161,101,.12);
-}
-.priority-btn.selected .dot {
-  background: rgba(200,161,101,.92);
-  border-color: rgba(200,161,101,.55);
-}
-.priority-btn.disabled {
-  opacity: .45;
-  cursor: not-allowed;
-  transform: none !important;
-}
+.priority-btn.selected { background: rgba(200,161,101,.18); border-color: rgba(200,161,101,.30); }
+.priority-btn.selected .dot { background: rgba(200,161,101,.92); border-color: rgba(200,161,101,.55); }
+.priority-btn.disabled { opacity: .45; cursor: not-allowed; transform: none !important; }
 
 /* ============ Messages ============ */
 .error-message {
-  margin-top: 6px;
-  padding: 10px 12px;
-  border-radius: 14px;
+  margin-top: 6px; padding: 10px 12px; border-radius: 14px;
   background: rgba(185, 28, 28, .10);
   border: 1px solid rgba(185, 28, 28, .22);
-  color: rgba(255,255,255,.92);
   font-size: 13px;
 }
-
 .success-message {
-  margin-top: 6px;
-  padding: 10px 12px;
-  border-radius: 14px;
+  margin-top: 6px; padding: 10px 12px; border-radius: 14px;
   background: rgba(21, 128, 61, .12);
   border: 1px solid rgba(21, 128, 61, .22);
-  color: rgba(255,255,255,.92);
   font-size: 13px;
 }
 
@@ -504,20 +418,8 @@ input:focus, select:focus {
   transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
   box-shadow: 0 18px 60px rgba(200,161,101,.18);
 }
-.btn-submit:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 26px 90px rgba(200,161,101,.24);
-}
-.btn-submit:disabled {
-  opacity: .65;
-  cursor: not-allowed;
-  transform: none;
-}
+.btn-submit:hover { transform: translateY(-1px); box-shadow: 0 26px 90px rgba(200,161,101,.24); }
+.btn-submit:disabled { opacity: .65; cursor: not-allowed; transform: none; }
 
-.legal {
-  margin-top: 10px;
-  font-size: 12px;
-  color: rgba(255,255,255,.55);
-  line-height: 1.5;
-}
+.legal { margin-top: 10px; font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.5; }
 </style>

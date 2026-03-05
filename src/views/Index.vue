@@ -62,7 +62,7 @@ onUnmounted(() => {
             <p class="sub">Свежие позиции из каталога — под любой интерьер.</p>
           </div>
           <div class="block__body">
-            <NewProducts />
+            <NewProducts/>
           </div>
         </div>
 
