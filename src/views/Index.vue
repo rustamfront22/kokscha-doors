@@ -49,13 +49,13 @@ import AllProducts from "@/components/views/home/AllProducts.vue";
       </section>
 
       <!-- FORM -->
-      <section class="section" id="lead-form">
+      <!-- <section class="section" id="lead-form">
         <div class="sectionHead">
           <h2>Оставить заявку</h2>
           <p>Мы свяжемся с вами и предложим лучшие варианты</p>
         </div>
 
-      </section>
+      </section> -->
     </div>
   </div>
 </template>

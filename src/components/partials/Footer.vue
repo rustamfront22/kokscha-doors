@@ -54,10 +54,16 @@
   gap: 32px;
   padding-bottom: 28px;
 }
-
+.footer__brand{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 15px;
+}
 .footer__logo img {
   height: 60px;
   width: auto;
+  
 }
 
 .footer__text {

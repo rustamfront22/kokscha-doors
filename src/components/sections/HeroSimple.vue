@@ -4,6 +4,7 @@ const props = defineProps({
   subtitle: { type: String, default: "" },
   ctaText: { type: String, default: "" },
   ctaTo: { type: [String, Object], default: "" }, // route or hash
+  
 });
 </script>
 
