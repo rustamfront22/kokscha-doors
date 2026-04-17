@@ -2,6 +2,7 @@
 import { ref, onUnmounted } from "vue";
 
 const isOpen = ref(false);
+const name = ref("");
 const rawPhone = ref("998");
 const isSubmitting = ref(false);
 const isSuccess = ref(false);
@@ -67,6 +68,7 @@ const openModal = () => {
   isOpen.value = true;
   isSuccess.value = false;
   errorMessage.value = "";
+  name.value = "";
   rawPhone.value = "998";
   displayPhone.value = formatPhone(rawPhone.value);
   resetTimer();
@@ -91,6 +93,7 @@ const submitLead = async () => {
     isSubmitting.value = true;
 
     const payload = {
+      name: name.value,
       phone: `+${rawPhone.value}`,
       source: "callback_widget",
       page: window.location.pathname,
@@ -161,6 +164,13 @@ onUnmounted(() => {
           <span class="callbackTimer__icon">◷</span>
           <span>0:{{ String(secondsLeft).padStart(2, "0") }},00</span>
         </div>
+
+        <input
+          class="callbackInput"
+          type="text"
+          v-model="name"
+          placeholder="Ваше имя и фамилия"
+        />
 
         <input
           class="callbackInput"
@@ -264,7 +274,7 @@ onUnmounted(() => {
   font-size: clamp(28px, 4vw, 44px);
   line-height: 1.08;
   font-weight: 800;
-  color: #1d9be0;
+  color: #f08a3c;
 }
 
 .callbackText {
@@ -312,7 +322,7 @@ onUnmounted(() => {
   margin-top: 22px;
   border: none;
   border-radius: 999px;
-  background: #19a0df;
+  background: #f08a3c;
   color: white;
   font-size: 24px;
   font-weight: 600;
