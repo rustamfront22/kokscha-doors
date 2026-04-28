@@ -14,19 +14,19 @@ export default defineConfig({
 
   server: {
     proxy: {
-      "/dummy": {
-        target: "https://dummyjson.com",
+      "/api": {
+        target: "https://crm-kukcha.vercel.app",
         changeOrigin: true,
-        secure: true,
-        rewrite: (path) => path.replace(/^\/dummy/, ""),
+        secure: false,
+        // rewrite: (path) => path.replace(/^\/dummy/, ""),
       },
 
       // 🔥 Лиды сюда
-      "/api": {
-      target: "http://localhost:5000", // или URL бэка
-      changeOrigin: true,
-      secure: false,
-      },
+      // "/api": {
+      // target: "http://localhost:5000", // или URL бэка
+      // changeOrigin: true,
+      // secure: false,
+      // },
     },
   },
 });
