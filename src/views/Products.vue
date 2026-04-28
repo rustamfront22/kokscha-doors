@@ -7,7 +7,7 @@
         <div class="products-page__right">
 
           <!-- ✅ Фильтр по цене -->
-          <div class="price-filter">
+          <!-- <div class="price-filter">
             <div class="price-filter__title">Фильтр по цене</div>
 
             <div class="price-filter__row">
@@ -27,7 +27,7 @@
                 Сбросить
               </button>
             </div>
-          </div>
+          </div> -->
 
           <!-- ✅ Список товаров -->
           <div class="products-page__list">
