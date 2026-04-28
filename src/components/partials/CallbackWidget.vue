@@ -128,7 +128,9 @@ const submitLead = async () => {
     isSubmitting.value = false;
   }
 };
-
+defineExpose({
+  openModal
+});
 onUnmounted(() => {
   clearInterval(timer);
   document.body.style.overflow = "";

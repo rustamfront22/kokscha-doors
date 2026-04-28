@@ -2,89 +2,118 @@
   <div class="current">
     <div class="container">
       <div class="card-content">
+
+        <!-- 🔥 КАРТИНКА -->
         <div class="card-content_carousel">
-          <Carousel
-            id="gallery"
-            :items-to-show="1"
-            :wrap-around="false"
-            v-model="currentSlide"
-          >
-            <Slide v-for="(slide, index) in data.images" :key="index">
-              <div class="carousel__item">
-                <img :src="slide" alt="" />
-              </div>
-            </Slide>
-          </Carousel>
-
-          <Carousel
-            id="thumbnails"
-            :breakpoints="breakpoints"
-            v-model="currentSlide"
-            ref="carousel"
-            class="carousel-mini"
-          >
-            <Slide v-for="(slide, index) in data.images" :key="index">
-              <div class="carousel__item" @click="slideTo(index - 1)">
-                <img :src="slide" alt="" />
-              </div>
-            </Slide>
-          </Carousel>
+          <div class="carousel__item">
+            <img
+              :src="data.thumbnail"
+              class="product-image"
+              @error="onImgError"
+              alt="door"
+            />
+          </div>
         </div>
-        <div class="card-content_info">
-          <div class="card-content_info-title">
-            <div class="card-rs">
-              <div class="product__card-rating">Rating: {{ data.rating }}</div>
-              <div class="card-content-stock">
-                в наличии: {{ data.stock }} шт.
-              </div>
-            </div>
-            <div class="product__card-name">
-              <h5>{{ data.title }}</h5>
-            </div>
-          </div>
-          <div class="card-content_info-pay">
-            <h3>Цена</h3>
 
-            <div class="product__card-price">
-              {{
-                data.price -
-                ((data.price * data.discountPercentage) / 100).toFixed()
-              }}
-              $
-            </div>
-            <div class="product__card-discount">
-              <s>{{ data.price }} $</s>
-              <span>скидка {{ data.discountPercentage }}%</span>
-            </div>
+        <!-- 🔥 ИНФА -->
+        <div class="card-content_info">
+          <div class="product__card-name">
+            <h2>{{ data.title }}</h2>
           </div>
+
+          <!-- характеристики -->
+          <div class="specs">
+            <p><b>Тип:</b> {{ data.type }}</p>
+            <p><b>Стиль:</b> {{ data.style }}</p>
+            <p><b>Цвет:</b> {{ data.color }}</p>
+            <p><b>Размер:</b> {{ data.size }}</p>
+            <p><b>Наполнение:</b> {{ data.fill }}</p>
+          </div>
+
+          <!-- описание -->
           <div class="description">
             <h3>Описание</h3>
-            {{ data.title }} <br />
-            <p class="description-title">{{ data.description }}</p>
+            <p>{{ data.description }}</p>
+          </div>
+
+          <!-- кнопка -->
+          <div class="product__card-btn">
+            <button class="btn btn-primary" @click="onLeadClick">
+              Оставить заявку
+            </button>
           </div>
         </div>
-        <!-- <pre>{{ data }}</pre> -->
+
       </div>
     </div>
-      <NewProducts />
+
+    <!-- 🔥 похожие товары -->
+    <NewProducts />
   </div>
 </template>
+
 <script setup>
-import { Carousel, Slide } from "vue3-carousel";
-import { ref } from "vue";
-import "vue3-carousel/dist/carousel.css";
 import NewProducts from "../home/NewProducts.vue";
+
 const props = defineProps(["data"]);
-const currentSlide = ref(null);
-const slideTo = (val) => {
-  currentSlide.value = val;
+
+// fallback картинка
+const onImgError = (e) => {
+  e.target.src = "/no-image.png";
 };
-const breakpoints = ref({
-  0: {
-    itemsToShow: 3,
-  },
-  1536: {
-    itemsToShow: 6,
-  },
-});
+
+// заявка (пока заглушка)
+const onLeadClick = () => {
+  console.log("Lead for:", props.data?.id);
+   window.openCallback();
+};
 </script>
+
+<style scoped>
+.card-content {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+
+.specs {
+  margin-top: 20px;
+}
+
+.specs p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.description {
+  margin-top: 20px;
+}
+
+.product__card-btn {
+  margin-top: 20px;
+}
+.product-image-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  background: #fff;
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+.product-image:hover {
+  transform: scale(1.05);
+}
+</style>

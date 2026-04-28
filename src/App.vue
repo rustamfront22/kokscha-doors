@@ -5,14 +5,23 @@
       <RouterView />
     </main>
     <Footer />
-    <CallbackWidget />
+  <CallbackWidget ref="callbackRef" />
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted  } from "vue";
+
 import Header from "@/components/partials/Header.vue";
 import Footer from "@/components/partials/Footer.vue";
 import CallbackWidget from "./components/partials/CallbackWidget.vue";
+
+const callbackRef = ref();
+onMounted(() => {
+  window.openCallback = () => {
+    callbackRef.value?.openModal();
+  };
+});
 </script>
 
 <style scoped>

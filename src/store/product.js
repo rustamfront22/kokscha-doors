@@ -7,62 +7,91 @@ const api = axios.create({
 
 export const useProductStore = defineStore("product", () => {
   const getProducts = async ({ limit = 12, skip = 0 } = {}) => {
+    const { data } = await api.get("/doors");
+
+    const mapped = data.map(mapDoorToProduct);
+
+    return {
+      data: {
+        products: mapped.slice(skip, skip + limit),
+        total: mapped.length,
+      },
+    };
+  };
+
+  const getProductsByCategory = async (category) => {
   const { data } = await api.get("/doors");
 
-  const mapped = data.map(mapDoorToProduct);
+  const list = Array.isArray(data) ? data : data.doors || [];
+
+  const filtered = list.filter((item) => item.type === category);
+
+  const mapped = filtered.map(mapDoorToProduct);
 
   return {
     data: {
-      products: mapped.slice(skip, skip + limit),
+      products: mapped,
       total: mapped.length,
     },
   };
 };
 
-  const getProductsByCategory = async (category, args) =>
-    api.get("/products/category/" + category, { params: args });
-
   const getProduct = async (id) => {
-  try {
-    const { data } = await api.get("/doors");
+    try {
+      const { data } = await api.get("/doors");
 
-    const list = Array.isArray(data) ? data : data.doors || [];
+      const list = Array.isArray(data) ? data : data.doors || [];
 
-    const found = list.find((item) => item.id == id);
+      const found = list.find((item) => item.id == id);
 
-    return {
-      data: mapDoorToProduct(found || {}),
-    };
-  } catch (error) {
-    console.error("getProduct error:", error);
-    return { data: {} };
-  }
-};
-
-  const getCategories = async () => api.get("/products/category-list");
-
- const mapDoorToProduct = (item) => {
-  return {
-    id: item.id,
-
-    // 👇 главное изменение
-    title: `Модель ${item.model}`,
-
-    description: item.description || "",
-
-    price: item.price || 0, // если цены нет на бэке
-
-    discountPercentage: 0,
-
-    thumbnail: item.image
-      ? "https://crm-kukcha.vercel.app" + item.image
-      : "",
-
-    category: item.type || "doors",
-
-    stock: item.fill ? parseInt(item.fill) : 0,
+      return {
+        data: mapDoorToProduct(found || {}),
+      };
+    } catch (error) {
+      console.error("getProduct error:", error);
+      return { data: {} };
+    }
   };
+
+ const getCategories = async () => {
+  const { data } = await api.get("/doors");
+
+  const list = Array.isArray(data) ? data : data.doors || [];
+
+  // берём type как категорию
+  const categories = [...new Set(list.map((item) => item.type))];
+
+  return { data: categories };
 };
+
+  const mapDoorToProduct = (item) => {
+    return {
+      id: item.id,
+
+      // 👇 главное изменение
+      title: `Модель ${item.model}`,
+
+      description: item.description || "",
+
+      price: item.price || 0, // если цены нет на бэке
+
+      discountPercentage: 0,
+
+      thumbnail: item.image
+        ? "https://crm-kukcha.vercel.app" + item.image
+        : "",
+
+      category: item.type || "doors",
+
+      stock: item.fill ? parseInt(item.fill) : 0,
+
+      type: item.type,
+      style: item.style,
+      color: item.color,
+      size: item.size,
+      fill: item.fill,
+    };
+  };
 
 
   return { getProducts, getProduct, getCategories, getProductsByCategory };

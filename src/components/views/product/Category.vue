@@ -13,7 +13,7 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useProductStore } from "../../../store/product";
 const storeProduct = useProductStore()
-const categories = ref(null)
+const categories = ref([])
 const {push} = useRouter()
 onMounted(async () => {
   try {
