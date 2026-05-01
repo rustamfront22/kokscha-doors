@@ -1,6 +1,6 @@
 <template>
     <div class="category category-list">
-        <h3 class="font-rubik text-1xl mb-4 ">Категории</h3>
+        <h3 class="font-rubik text-1xl mb-4 ">{{$t('Categories')}}</h3>
         <ul class="grid gap-3 ">
             <li v-for="(cat, key) in categories" :key="key" class="capitalize cursor-pointer" @click="changeHandle(cat)">
                 {{ cat.replaceAll('-', ' ') }}

@@ -12,7 +12,7 @@ const props = defineProps({
   <section class="py-12 md:py-16">
     <div class="container">
       <div class="rounded-3xl bg-white/5 border border-white/10 p-8 md:p-12">
-        <h1 class="text-3xl md:text-5xl font-bold">{{ title }}</h1>
+        <h1 class="text-3xl md:text-5xl font-bold">{{title }}</h1>
         <p v-if="subtitle" class="opacity-80 mt-3 max-w-2xl">{{ subtitle }}</p>
 
         <div v-if="ctaText" class="mt-6">

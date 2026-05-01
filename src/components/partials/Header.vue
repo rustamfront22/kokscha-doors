@@ -1,59 +1,82 @@
 <template>
   <header class="header">
     <div class="header__top">
-      <div class="container header__top-inner">
+      <!-- <div class="container header__top-inner">
         <div class="header__meta">
           <span class="header__city">📍 Ташкент</span>
         </div>
-
         <nav class="header__mini-nav">
-          <button class="header__lang" type="button">RU</button>
+          <div class="lang">
+            <button @click="changeLang('ru')">RU</button>
+            <button @click="changeLang('en')">EN</button>
+            <button @click="changeLang('uz')">UZ</button>
+            <button @click="changeLang('zh')">CN</button>
+          </div>
         </nav>
-      </div>
+        
+      </div> -->
     </div>
-
     <div class="header__main">
       <div class="container header__main-inner">
         <RouterLink to="/" class="header__logo">
-          <img
-            src="@/assets/img/kokscha_logo_transparent.svg"
-            alt="Ko'kcha"
-          />
+          <img src="@/assets/img/kokscha_logo_transparent.svg" alt="Ko'kcha" />
         </RouterLink>
-
         <nav class="header__nav">
-          <RouterLink :to="{ name: 'about' }">Компания</RouterLink>
-          <RouterLink :to="{ name: 'products' }">Каталог</RouterLink>
-          <RouterLink :to="{ name: 'partners' }">Сотрудничество</RouterLink>
-           <RouterLink :to="{ name: 'builders' }">Для строителей</RouterLink>
-           <RouterLink :to="{ name: 'designers' }">Для дизайнеров</RouterLink>
-          
+          <RouterLink :to="{ name: 'about' }">{{ $t("Company") }}</RouterLink>
+          <RouterLink :to="{ name: 'products' }">{{ $t('Catalog') }}</RouterLink>
+          <RouterLink :to="{ name: 'partners' }">{{ $t('Cooperation') }}</RouterLink>
+          <RouterLink :to="{ name: 'builders' }">{{ $t('For builders') }}</RouterLink>
+          <RouterLink :to="{ name: 'designers' }">{{ $t('For designers') }}</RouterLink>
         </nav>
-
-        <button class="header__burger" type="button" @click="mobileOpen = !mobileOpen">
-          <span></span>
-          <span></span>
-          <span></span>
+        <button
+          class="header__burger"
+          type="button"
+          @click="mobileOpen = !mobileOpen"
+        >
+          <span></span> <span></span> <span></span>
         </button>
+        <div class="header__locale">
+          <ChangeLocale />
+        </div>
+        
       </div>
     </div>
-
     <transition name="fade">
       <div v-if="mobileOpen" class="mobile-menu">
         <div class="container mobile-menu__inner">
-          <RouterLink @click="mobileOpen = false" :to="{ name: 'about' }">Компания</RouterLink>
-          <RouterLink @click="mobileOpen = false" :to="{ name: 'products' }">Каталог</RouterLink>
-          <RouterLink @click="mobileOpen = false" :to="{ name: 'partners' }">Сотрудничество</RouterLink>
-          <RouterLink  @click="mobileOpen = false" :to="{ name: 'builders' }">Для строителей</RouterLink>
-          <RouterLink  @click="mobileOpen = false" :to="{ name: 'designers' }">Для дизайнеров</RouterLink>
+          <RouterLink @click="mobileOpen = false" :to="{ name: 'about' }"
+            >{{ $t("Company") }}</RouterLink
+          >
+          <RouterLink @click="mobileOpen = false" :to="{ name: 'products' }"
+            >{{ $t('Catalog') }}</RouterLink
+          >
+          <RouterLink @click="mobileOpen = false" :to="{ name: 'partners' }"
+            >{{ $t('Cooperation') }}</RouterLink
+          >
+          <RouterLink @click="mobileOpen = false" :to="{ name: 'builders' }"
+            >{{ $t('For builders') }}</RouterLink
+          >
+          <RouterLink @click="mobileOpen = false" :to="{ name: 'designers' }"
+            >{{ $t('For designers') }}</RouterLink
+          >
         </div>
       </div>
     </transition>
+    
   </header>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+import ChangeLocale from "./ChangeLocale.vue";
+
+const { locale } = useI18n();
+
+const changeLang = (lang) => {
+  locale.value = lang;
+  localStorage.setItem("lang", lang);
+};
 
 const mobileOpen = ref(false);
 </script>
@@ -194,12 +217,19 @@ const mobileOpen = ref(false);
 }
 
 @media (max-width: 1100px) {
+  .header__logo{
+    order:2;
+  }
+  .header__locale{
+    order: 3;
+  }
   .header__nav {
     display: none;
   }
 
   .header__burger {
     display: flex;
+    order: 1;
   }
 }
 

@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <Partners />
+  <!-- <Partners /> -->
 </template>
 
 <script setup>

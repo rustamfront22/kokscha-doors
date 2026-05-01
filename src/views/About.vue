@@ -4,151 +4,147 @@
       <div class="container">
         <div class="heroGrid">
           <div class="heroLeft">
-            <div class="kicker reveal">О компании</div>
-
+            <div class="kicker reveal">{{ $t("About the company") }}</div>
             <h1 class="title heroTitle reveal">
               Ko'kcha Eshiklar —
-              <span class="accent">современные двери</span>
-              для интерьера и входных решений
+              <span class="accent">{{ $t("modern doors") }}</span>
+              {{ $t("for interior and entrance solutions") }}
             </h1>
-
             <p class="lead reveal">
-              Производим и устанавливаем входные и межкомнатные двери в Ташкенте.
-              Индивидуальные размеры, отделка, фурнитура и монтаж — под ключ.
+              {{
+                $t(
+                  "We produce and install entrance and interior doors in Tashkent. Individual sizes, finishes, fittings and installation are turnkey."
+                )
+              }}
             </p>
-
             <div class="heroActions reveal">
               <RouterLink class="btn btn-primary" :to="{ name: 'products' }">
-                Каталог
+                {{ $t("Catalog") }}
               </RouterLink>
-
               <RouterLink class="btn btn-outline" :to="{ name: 'builders' }">
-                Для строителей
+                {{ $t("For builders") }}
               </RouterLink>
-
               <RouterLink class="btn btn-ghost" :to="{ name: 'designers' }">
-                Для дизайнеров
+                {{ $t("For designers") }}
               </RouterLink>
             </div>
-
             <div class="chips reveal">
-              <span class="chip">Индивидуальное изготовление</span>
-              <span class="chip">Монтаж под ключ</span>
-              <span class="chip">Гарантия качества</span>
+              <span class="chip">{{ $t("Individual production") }}</span>
+              <span class="chip">{{ $t("Turnkey installation") }}</span>
+              <span class="chip">{{ $t("Quality assurance") }}</span>
             </div>
           </div>
-
           <div class="heroRight card reveal">
             <div class="stats">
               <div class="stat">
                 <div class="statNum">{{ display.year }}</div>
-                <div class="statLabel">на рынке</div>
+                <div class="statLabel">{{ $t("on the market") }}</div>
               </div>
-
               <div class="stat">
                 <div class="statNum">{{ display.projects }}+</div>
-                <div class="statLabel">проектов</div>
+                <div class="statLabel">{{ $t("projects") }}</div>
               </div>
-
               <div class="stat">
                 <div class="statNum">{{ display.cities }}</div>
-                <div class="statLabel">города/страны</div>
+                <div class="statLabel">{{ $t("cities/countries") }}</div>
               </div>
-
               <div class="stat">
                 <div class="statNum">{{ display.support }}</div>
-                <div class="statLabel">поддержка</div>
+                <div class="statLabel">{{ $t("support") }}</div>
               </div>
             </div>
-
             <div class="note">
-              <div class="noteTitle">Шоурум</div>
+              <div class="noteTitle">{{ $t("Showroom") }}</div>
               <div class="noteText">
-                Ташкент, Шайхантахурский район, Себзар-7
+                {{ $t("Tashkent, Shaikhantakhur district, Sebzar-7") }}
               </div>
             </div>
-
             <div class="note">
-              <div class="noteTitle">География</div>
-              <div class="noteText">Ташкент • Бишкек • Душанбе</div>
+              <div class="noteTitle">{{ $t("Geography") }}</div>
+              <div class="noteText">
+                {{ $t("Tashkent • Bishkek • Dushanbe") }}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <section class="section section--tint">
       <div class="container">
         <div class="split">
           <div class="splitLeft reveal">
-            <h2 class="title h2">Качество как философия</h2>
-
+            <h2 class="title h2">{{ $t("Quality as a philosophy") }}</h2>
             <p class="text">
-              Мы держим фокус на материале, точной сборке и чистом монтаже.
-              Дверь должна выглядеть аккуратно, современно и служить долго.
+              {{ $t("We keep the focus on the material, precise assembly and clean installation. The door should look neat, modern and last a long time.") }}
             </p>
-
             <div class="bullets">
               <div class="bullet reveal">
                 <div class="bulletDot" />
                 <div>
-                  <div class="bulletTitle">Контроль на каждом этапе</div>
+                  <div class="bulletTitle">
+                    {{ $t("Control at each stage") }}
+                  </div>
                   <div class="bulletText">
-                    От замера до установки и финальной проверки.
+                    {{
+                      $t(
+                        "From measurement to installation and final inspection."
+                      )
+                    }}
                   </div>
                 </div>
               </div>
-
               <div class="bullet reveal">
                 <div class="bulletDot" />
                 <div>
-                  <div class="bulletTitle">Индивидуальные решения</div>
+                  <div class="bulletTitle">
+                    {{ $t("Customized solutions") }}
+                  </div>
                   <div class="bulletText">
-                    Размеры, отделки, фурнитура — под ваш проект.
+                    {{ $t("Sizes, finishes, fittings — for your project.") }}
                   </div>
                 </div>
               </div>
-
               <div class="bullet reveal">
                 <div class="bulletDot" />
                 <div>
-                  <div class="bulletTitle">Современный дизайн</div>
+                  <div class="bulletTitle">{{ $t("Modern design") }}</div>
                   <div class="bulletText">
-                    От классики до минимализма — аккуратно и актуально.
+                    {{
+                      $t("From classics to minimalism, its neat and relevant.")
+                    }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="splitRight reveal">
             <div class="showcase card">
               <div class="showTop">
-                <div class="tag">Сервис</div>
-                <div class="tag tag--soft">Производство</div>
+                <div class="tag">{{ $t("Service") }}</div>
+                <div class="tag tag--soft">{{ $t("Production") }}</div>
               </div>
-
-              <div class="showTitle title">Детали решают всё</div>
-
+              <div class="showTitle title">
+                {{ $t("The details decide everything") }}
+              </div>
               <div class="showText">
-                Мы собираем продукт так, чтобы он хорошо выглядел, точно встал
-                в проект и не создавал проблем после монтажа.
+                {{
+                  $t(
+                    "We assemble the product so that it looks good and fits exactly into the the project did not create any problems after installation."
+                  )
+                }}
               </div>
-
               <div class="miniCards">
                 <div class="mini card">
-                  <div class="miniTitle">Замер</div>
-                  <div class="miniText">точно и быстро</div>
+                  <div class="miniTitle">{{ $t("Measuring") }}</div>
+                  <div class="miniText">{{ $t("accurate and fast") }}</div>
                 </div>
-
                 <div class="mini card">
-                  <div class="miniTitle">Изготовление</div>
-                  <div class="miniText">под проект</div>
+                  <div class="miniTitle">{{ $t("Production") }}</div>
+                  <div class="miniText">{{ $t("under the project") }}</div>
                 </div>
-
                 <div class="mini card">
-                  <div class="miniTitle">Монтаж</div>
-                  <div class="miniText">чисто и аккуратно</div>
+                  <div class="miniTitle">{{ $t("Mounting") }}</div>
+                  <div class="miniText">{{ $t("clean and tidy") }}</div>
                 </div>
               </div>
             </div>
@@ -156,78 +152,76 @@
         </div>
       </div>
     </section>
-
     <section class="section">
       <div class="container">
         <div class="head reveal">
-          <h2 class="title h2">Работаем с партнёрами</h2>
+          <h2 class="title h2">{{ $t("We work with partners") }}</h2>
           <p class="text">
-            Отдельные условия и удобный формат работы для дизайнеров,
-            строителей и проектных клиентов.
+            {{
+              $t(
+                "Separate working conditions and a convenient format for designers, builders and project clients."
+              )
+            }}
           </p>
         </div>
-
         <div class="partnerGrid">
-          <RouterLink class="partnerCard card reveal" :to="{ name: 'designers' }">
-            <div class="partnerTitle">Для дизайнеров</div>
+          <RouterLink
+            class="partnerCard card reveal"
+            :to="{ name: 'designers' }"
+          >
+            <div class="partnerTitle">{{$t('For designers')}}</div>
             <div class="partnerText">
-              Подбор отделок, текстур, фурнитуры и решений под интерьер.
+              {{$t('Selection of finishes, textures, fittings and interior solutions.')}}
             </div>
-            <span class="partnerLink">Перейти</span>
+            <span class="partnerLink">{{$t('Go over')}}</span>
           </RouterLink>
-
-          <RouterLink class="partnerCard card reveal" :to="{ name: 'builders' }">
-            <div class="partnerTitle">Для строителей</div>
+          <RouterLink
+            class="partnerCard card reveal"
+            :to="{ name: 'builders' }"
+          >
+            <div class="partnerTitle">{{$t('For builders')}}</div>
             <div class="partnerText">
-              Оптовые условия, стабильные поставки и сопровождение по объектам.
+              {{$t('Wholesale conditions, stable supplies and facility support.')}}
             </div>
-            <span class="partnerLink">Перейти</span>
+            <span class="partnerLink">{{$t('Go over')}}</span>
           </RouterLink>
         </div>
       </div>
     </section>
-
     <section id="contacts" class="section section--tint">
       <div class="container">
         <div class="head reveal">
-          <h2 class="title h2">Контакты</h2>
+          <h2 class="title h2">{{$t('Contacts')}}</h2>
           <p class="text">
-            Свяжитесь с нами — подскажем по моделям, срокам и стоимости.
+            {{$t('Contact us and we will tell you about the models, terms and cost.')}}
           </p>
         </div>
-
         <div class="contactsGrid">
           <div class="card reveal contactCard">
-            <div class="contactTitle">Телефон</div>
+            <div class="contactTitle">{{$t('Telephone')}}</div>
             <a class="contactLink" href="tel:+998901301010">
               +998 (90) 130-10-10
             </a>
-            <div class="contactHint">Ежедневно 09:00–20:00</div>
+            <div class="contactHint">{{$t('Daily')}} 09:00–20:00</div>
           </div>
-
           <div class="card reveal contactCard">
-            <div class="contactTitle">Адрес</div>
+            <div class="contactTitle">{{$t('Address')}}</div>
             <div class="contactText">
-              Ташкент, Шайхантахурский район, Себзар-7
+              {{$t('Tashkent, Shaikhantakhur district, Sebzar-7')}}
             </div>
-            <div class="contactHint">Шоурум</div>
+            <div class="contactHint">{{$t('Showroom')}}</div>
           </div>
-
           <div class="card reveal contactCard">
-            <div class="contactTitle">География</div>
-            <div class="contactText">Ташкент • Бишкек • Душанбе</div>
-            <div class="contactHint">Доставка по регионам</div>
+            <div class="contactTitle">{{$t('Geography')}}</div>
+            <div class="contactText">{{$t('Tashkent • Bishkek • Dushanbe')}}</div>
+            <div class="contactHint">{{$t('Delivery by region')}}</div>
           </div>
         </div>
       </div>
     </section>
-
-    <section class="mapSection">
-      <AboutMap />
-    </section>
+    <section class="mapSection"><AboutMap /></section>
   </main>
 </template>
-
 <script setup>
 import { onMounted, onUnmounted, reactive } from "vue";
 import AboutMap from "@/components/partials/AboutMap.vue";

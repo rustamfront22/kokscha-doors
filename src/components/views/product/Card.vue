@@ -29,7 +29,7 @@
         type="button"
         @click.prevent.stop="onLeadClick"
       >
-        Оставить заявку
+        {{$t('Submit your application')}}
       </button>
     </div>
   </RouterLink>

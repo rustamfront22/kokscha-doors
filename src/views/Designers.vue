@@ -92,7 +92,7 @@ const goLead = () => {
       <div class="container">
         <div class="heroGrid">
           <div class="heroLeft" data-reveal>
-            <div class="kicker">Для дизайнерам</div>
+            <div class="kicker">{{$t('For designers')}}</div>
 
             <h1 class="heroTitle">
               {{ c.designers.heroTitle || "Дизайнерам и архитекторам" }}
@@ -107,25 +107,25 @@ const goLead = () => {
 
             <div class="heroActions">
               <button class="btn btn--primary" type="button" @click="goLead">
-                Получить материалы
+                {{$t('Get materials')}}
               </button>
 
               <a class="btn btn--ghost" href="tel:+998900000000">
-                Позвонить
+                {{$t('To call')}}
               </a>
             </div>
 
             <div class="heroChips">
-              <span class="chip">Каталоги</span>
-              <span class="chip">Подбор под стиль</span>
-              <span class="chip">Декор</span>
+              <span class="chip">{{$t('Catalogs')}}</span>
+              <span class="chip">{{$t('Matching the style')}}</span>
+              <span class="chip">{{$t('Decor')}}</span>
             </div>
           </div>
 
           <div class="heroRight card" data-reveal>
             <div class="heroRight__top">
-              <div class="heroRight__eyebrow">Для дизайнеров</div>
-              <h2 class="heroRight__title">Что вы получите</h2>
+              <div class="heroRight__eyebrow">{{$t('For designers')}}</div>
+              <h2 class="heroRight__title">{{$t('What will you get')}}</h2>
             </div>
 
             <ul class="heroRight__list">
@@ -136,18 +136,18 @@ const goLead = () => {
 
             <div class="heroRight__stats">
               <div class="miniStat">
-                <div class="miniStat__num">Каталоги</div>
-                <div class="miniStat__text">материалы и образцы</div>
+                <div class="miniStat__num">{{$t('Catalogs')}}</div>
+                <div class="miniStat__text">{{$t('materials and samples')}}</div>
               </div>
 
               <div class="miniStat">
-                <div class="miniStat__num">Стиль</div>
-                <div class="miniStat__text">решения под интерьер</div>
+                <div class="miniStat__num">{{$t('Style')}}</div>
+                <div class="miniStat__text">{{$t('interior solutions')}}</div>
               </div>
             </div>
 
             <div class="heroRight__footer">
-              Работаем с дизайнерами, архитекторами и частными проектами.
+              {{$t('We work with designers, architects and private projects.')}}
             </div>
           </div>
         </div>
@@ -157,9 +157,9 @@ const goLead = () => {
     <section class="section section--cards">
       <div class="container">
         <div class="cardsHead" data-reveal>
-          <h2 class="sectionTitle">Почему с нами удобно</h2>
+          <h2 class="sectionTitle">{{$t('Why is it convenient to work with us')}}</h2>
           <p class="sectionText">
-            Не просто двери, а понятная работа с проектом, материалами и клиентом.
+            {{$t('Not just doors, but clear work with the project, materials and the client.')}}
           </p>
         </div>
 
@@ -176,9 +176,9 @@ const goLead = () => {
     <section class="section section--tint">
       <div class="container">
         <div class="head" data-reveal>
-          <h2 class="sectionTitle">Что вы получаете</h2>
+          <h2 class="sectionTitle">{{$t('What do you get')}}</h2>
           <p class="sectionText">
-            Всё, что помогает быстрее согласовывать решения и закрывать проект красиво.
+            {{$t('Everything that helps to coordinate decisions faster and close the project beautifully.')}}
           </p>
         </div>
 
@@ -199,9 +199,9 @@ const goLead = () => {
         <div class="stepsWrap" data-reveal>
           <div class="head head--steps">
             <div>
-              <h2 class="sectionTitle">Как мы работаем</h2>
+              <h2 class="sectionTitle">{{$t('How we work')}}</h2>
               <p class="sectionText">
-                Простой процесс, чтобы вы быстро доводили проект до результата.
+                {{$t('A simple process so that you can quickly bring the project to the result.')}}
               </p>
             </div>
           </div>
@@ -216,14 +216,14 @@ const goLead = () => {
 
           <div class="cta">
             <div class="cta__content">
-              <div class="cta__title">Нужны каталоги и материалы?</div>
+              <div class="cta__title">{{$t('Do you need catalogs and materials?')}}</div>
               <div class="cta__text">
-                Оставьте заявку — отправим материалы и поможем с подбором под ваш проект.
+                {{$t('Leave a request and we will send you the materials and help you with the selection for your project.')}}
               </div>
             </div>
 
             <button class="btn btn--primary" type="button" @click="goLead">
-              Получить материалы
+              {{$t('Get materials')}}
             </button>
           </div>
         </div>

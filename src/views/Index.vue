@@ -6,23 +6,20 @@ import AllProducts from "@/components/views/home/AllProducts.vue";
 
 <template>
   <div class="home">
-    <!-- HERO -->
     <CarouselMain />
 
     <div class="container">
-      <!-- BADGES -->
       <div class="badges">
-        <div class="badge">Премиум двери</div>
-        <div class="badge">ГОСТ / ISO</div>
-        <div class="badge">Гарантия до 10 лет</div>
-        <div class="badge">Под размер</div>
+        <div class="badge">{{$t('Premium doors')}}</div>
+        <div class="badge">{{$t('GOST / ISO')}}</div>
+        <div class="badge">{{$t('Up to 10 years warranty')}}</div>
+        <div class="badge">{{$t('Under the size')}}</div>
       </div>
 
-      <!-- NEW PRODUCTS -->
       <section class="section">
         <div class="sectionHead">
-          <h2>Новые модели</h2>
-          <p>Свежие решения для современного интерьера</p>
+          <h2>{{$t('New models')}}</h2>
+          <p>{{$t('Fresh solutions for a modern interior')}}</p>
         </div>
 
         <NewProducts />
@@ -31,8 +28,8 @@ import AllProducts from "@/components/views/home/AllProducts.vue";
       <!-- ALL PRODUCTS -->
       <section class="section">
         <div class="sectionHead">
-          <h2>Каталог</h2>
-          <p>Подберите идеальную дверь под ваш проект</p>
+          <h2>{{$t('Catalog')}}</h2>
+          <p>{{$t('Choose the perfect door for your project.')}}</p>
         </div>
 
         <AllProducts />
@@ -41,11 +38,11 @@ import AllProducts from "@/components/views/home/AllProducts.vue";
       <!-- CTA -->
       <section class="cta">
         <div class="cta__content">
-          <h2>Нужна помощь с выбором?</h2>
-          <p>Оставьте заявку — подберём двери под ваш интерьер и бюджет</p>
+          <h2>{{$t('Do you need help choosing?')}}</h2>
+          <p>{{$t('Leave a request and we will select the doors for your interior and budget.')}}</p>
         </div>
 
-        <a class="btn">Оставить заявку</a>
+        <a class="btn">{{$t('Submit your application')}}</a>
       </section>
 
       <!-- FORM -->

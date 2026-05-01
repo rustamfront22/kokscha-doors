@@ -65,70 +65,70 @@ const goLead = () => {
 </script>
 
 <template>
+  
   <div class="builders" :class="{ 'is-mounted': mounted }">
     <section class="hero">
       <div class="container">
         <div class="heroGrid">
           <div class="heroLeft" data-reveal>
-            <div class="kicker">Для строителей</div>
+            <div class="kicker">{{$t('For builders')}}</div>
 
             <h1 class="heroTitle">
-              {{ c.builders.heroTitle || "Решения для строителей и подрядчиков" }}
+              {{$t( c.builders.heroTitle) || "Решения для строителей и подрядчиков" }}
             </h1>
 
             <p class="heroText">
               {{
-                c.builders.heroText ||
+                $t(c.builders.heroText) ||
                 "Поставляем двери для объектов, частного строительства и комплектации проектов. Помогаем по срокам, объёмам и подбору решений под задачу."
               }}
             </p>
 
             <div class="heroActions">
               <button class="btn btn--primary" type="button" @click="goLead">
-                Запросить условия
+                {{$t('Request conditions')}}
               </button>
-              <a class="btn btn--ghost" href="tel:+998900000000">Позвонить</a>
+              <a class="btn btn--ghost" href="tel:+998900000000">{{$t('To call')}}</a>
             </div>
 
             <div class="heroChips">
-              <span class="chip">Оптовые объёмы</span>
-              <span class="chip">Сроки под график</span>
-              <span class="chip">Поддержка по объекту</span>
+              <span class="chip">{{$t('Wholesale volumes')}}</span>
+              <span class="chip">{{$t('Deadlines for the schedule')}}</span>
+              <span class="chip">{{$t('Object support')}}</span>
             </div>
           </div>
 
           <div class="heroRight card" data-reveal>
             <div class="stats">
               <div class="stat">
-                <div class="stat__num">Опт</div>
-                <div class="stat__text">условия для объектов</div>
+                <div class="stat__num">{{$t('Wholesale')}}</div>
+                <div class="stat__text">{{$t('conditions for objects')}}</div>
               </div>
               <div class="stat">
-                <div class="stat__num">ГОСТ</div>
-                <div class="stat__text">стандарты качества</div>
+                <div class="stat__num">{{$t('GOST')}}</div>
+                <div class="stat__text">{{$t('quality standards')}}</div>
               </div>
               <div class="stat">
-                <div class="stat__num">Сроки</div>
-                <div class="stat__text">поставки под этапы</div>
+                <div class="stat__num">{{$t('Deadlines')}}</div>
+                <div class="stat__text">{{$t('deliveries under stages')}}</div>
               </div>
               <div class="stat">
-                <div class="stat__num">Подбор</div>
-                <div class="stat__text">по спецификации</div>
+                <div class="stat__num">{{$t('Selection')}}</div>
+                <div class="stat__text">{{$t('according to the specification')}}</div>
               </div>
             </div>
 
             <div class="note">
-              <div class="note__title">Для кого</div>
+              <div class="note__title">{{$t('For whom')}}</div>
               <div class="note__text">
-                Строители, подрядчики, комплектаторы, ремонтные бригады и компании,
-                которые ведут объекты под ключ.
+                {{$t('Builders, contractors, fitters, repair crews, and companies that maintain turnkey facilities.')}}
               </div>
             </div>
 
             <div class="note">
-              <div class="note__title">Формат работы</div>
+              <div class="note__title">{{$t('The format of the work')}}</div>
               <div class="note__text">
-                Консультация, подбор, согласование партий, производство и поставка.
+                {{$t('Consultation, selection, coordination of batches, production and delivery.')}}
               </div>
             </div>
           </div>
@@ -141,19 +141,19 @@ const goLead = () => {
         <div class="kpis" data-reveal>
           <div class="kpi">
             <div class="kpi__num">×7</div>
-            <div class="kpi__text">быстрее установка</div>
+            <div class="kpi__text">{{$t('faster installation')}}</div>
           </div>
           <div class="kpi">
-            <div class="kpi__num">ГОСТ</div>
-            <div class="kpi__text">контроль качества</div>
+            <div class="kpi__num">{{$t('GUST')}}</div>
+            <div class="kpi__text">{{$t('Quality control')}}</div>
           </div>
           <div class="kpi">
-            <div class="kpi__num">Опт</div>
-            <div class="kpi__text">условия под проекты</div>
+            <div class="kpi__num">{{$t('Wholesale')}}</div>
+            <div class="kpi__text">{{$t('conditions for projects')}}</div>
           </div>
           <div class="kpi">
-            <div class="kpi__num">Сроки</div>
-            <div class="kpi__text">поставка под график</div>
+            <div class="kpi__num">{{$t('Deadlines')}}</div>
+            <div class="kpi__text">{{$t('delivery on schedule')}}</div>
           </div>
         </div>
 
@@ -161,9 +161,9 @@ const goLead = () => {
           <article class="card" v-for="(p, i) in c.builders.perks" :key="i">
             <div class="card__top">
               <div class="icon">⚡</div>
-              <h3 class="card__title">{{ p.title }}</h3>
+              <h3 class="card__title">{{ $t(p.title) }}</h3>
             </div>
-            <p class="muted">{{ p.text }}</p>
+            <p class="muted">{{ $t(p.text) }}</p>
           </article>
         </div>
       </div>
@@ -172,19 +172,19 @@ const goLead = () => {
     <section class="section section--tint">
       <div class="container">
         <div class="head" data-reveal>
-          <h2 class="h2">Что вы получаете на объекте</h2>
+          <h2 class="h2">{{$t('What do you get at the facility')}}</h2>
           <p class="sub">
-            Меньше задержек, меньше доработок и более предсказуемый результат по каждой партии.
+            {{$t('There are fewer delays, fewer improvements, and a more predictable result for each batch.')}}
           </p>
         </div>
 
         <div class="perksGrid" data-reveal>
           <article class="perk card" v-for="(x, idx) in whatYouGet" :key="idx">
             <div class="perk__top">
-              <div class="perk__icon">{{ x.icon }}</div>
-              <div class="perk__title">{{ x.title }}</div>
+              <div class="perk__icon">{{ $t(x.icon )}}</div>
+              <div class="perk__title">{{ $t(x.title) }}</div>
             </div>
-            <div class="perk__text">{{ x.text }}</div>
+            <div class="perk__text">{{$t( x.text) }}</div>
           </article>
         </div>
       </div>
@@ -194,30 +194,30 @@ const goLead = () => {
       <div class="container">
         <div class="stepsWrap" data-reveal>
           <div class="head">
-            <h2 class="h2">Как строится работа</h2>
+            <h2 class="h2">{{$t('How the work is structured')}}</h2>
             <p class="sub">
-              Простой и понятный процесс, чтобы вы не теряли темп на объекте.
+              {{$t('A simple and intuitive process so that you dont lose your pace on the site.')}}
             </p>
           </div>
 
           <div class="stepsGrid">
             <article class="step card" v-for="(s, idx) in pipeline" :key="idx">
-              <div class="step__num">{{ s.n }}</div>
-              <div class="step__title">{{ s.t }}</div>
-              <div class="step__text">{{ s.d }}</div>
+              <div class="step__num">{{ $t(s.n) }}</div>
+              <div class="step__title">{{ $t(s.t) }}</div>
+              <div class="step__text">{{ $t(s.d) }}</div>
             </article>
           </div>
 
           <div class="cta">
             <div>
-              <div class="cta__title">Нужны двери на объект?</div>
+              <div class="cta__title">{{$t('Do you need doors to the facility?')}}</div>
               <div class="cta__text">
-                Оставьте заявку — подготовим условия по объёму, срокам и комплектации.
+                {{$t('Leave a request and we will prepare the conditions for the volume, timing and configuration.')}}
               </div>
             </div>
 
             <button class="btn btn--primary" type="button" @click="goLead">
-              Оставить заявку
+              {{$t('Submit your application')}}
             </button>
           </div>
         </div>

@@ -1,117 +1,109 @@
-// src/components/content/companyContent.js
+
+
+
 export const companyContent = {
   stats: [
-    { num: "+4", text: "Года на рынке" },
-    { num: "+10", text: "Гарантия на двери" },
-    { num: "+1", text: "Фабрики" },
-    { num: "100%", text: "Надежность и прочность" },
+    { num: "+4", text: "Years on the market" },
+    { num: "+10", text: "Door warranty" },
+    { num: "+1", text: "Factories" },
+    { num: "100%", text: "Reliability and durability" },
   ],
 
   about: {
-    title: "О компании",
-    text:
-      "Ko'kcha eshiklar premium — производитель межкомнатных дверей европейского уровня. " +
-      "Работаем по стандартам качества (ГОСТ, ISO), используем европейские технологии и даём гарантию до 10 лет.",
+    title: "About the company",
+    text: "About company description",
     bullets: [
-      "Гарантия 10 лет",
-      "Соответствие ГОСТ и ISO",
-      "Индивидуальные размеры (min/max)",
-      "Большой модельный ряд и палитра",
+      "10-year warranty",
+      "Compliance with GOST and ISO",
+      "Custom sizes (min/max)",
+      "Wide range of models and color palette",
     ],
   },
 
   benefits: {
-    title: "Преимущества",
+    title: "Advantages",
     items: [
       {
-        title: "Стабильность партнерства",
-        text: "Стабильные поставки и надежное сотрудничество.",
+        title: "Partnership stability",
+        text: "Partnership stability description",
       },
       {
-        title: "Лучшее соотношение цена/качество",
-        text: "Широкий ценовой диапазон и достойное качество.",
+        title: "Best price-quality ratio",
+        text: "Best price-quality ratio description",
       },
       {
-        title: "Индивидуальный подход",
-        text: "Изготовление под размер, подбор витрины, помощь с комплектацией.",
+        title: "Individual approach",
+        text: "Individual approach description",
       },
       {
-        title: "Быстрые сроки изготовления",
-        text: "Оптимизированное производство и контроль качества.",
+        title: "Fast production times",
+        text: "Fast production times description",
       },
       {
-        title: "Материалы и декор бесплатно",
-        text: "Обеспечиваем образцами материалов, декора и печатной продукции.",
+        title: "Free materials and decor",
+        text: "Free materials and decor description",
       },
     ],
   },
 
   process: {
-    title: "Процесс установки дверного блока",
+    title: "Door block installation process",
     steps: [
-      "Подготовка наличников к монтажу с запилом под высоту проема",
-      "Запил коробочного бруса под угол 45°, сборка короба саморезами",
-      "Врезка отверстия под ответную планку на коробе и ее установка",
-      "Врезка отверстия под замок/защелку, установка замка/защелки",
-      "Врезка отверстия под ручку",
-      "Навешивание полотна петлями к коробочному брусу",
+      "Installation step 1",
+      "Installation step 2",
+      "Installation step 3",
+      "Installation step 4",
+      "Installation step 5",
+      "Installation step 6",
     ],
-    finish:
-      "Дверь готова — остаётся закрепить блок в проёме и установить ручку.",
+    finish: "Installation finish",
   },
 
   designers: {
-    heroTitle: "Дизайнерам и архитекторам",
-    heroText:
-      "Кокча-двери premium внимательно следит за тенденциями в интерьере. " +
-      "Большой выбор моделей, покрытий и декоров — работать с нами удобно и выгодно.",
+    heroTitle: "For designers and architects",
+    heroText: "For designers and architects description",
 
     blocks: [
       {
-        title: "Огромный выбор моделей",
-        text:
-          "Ежегодно выпускаем новинки дверей. В каталоге большой выбор моделей, расцветок, фактур и видов покрытий.",
+        title: "Huge selection of models",
+        text: "Huge selection of models description",
       },
       {
-        title: "Большой ассортимент декоров",
-        text:
-          "Наличники, колонны, карнизы, капители, розетки и подпятники — завершат образ двери и всего интерьера.",
+        title: "Wide range of decor",
+        text: "Wide range of decor description",
       },
       {
-        title: "Продукция в разных стилях",
-        text:
-          "Барокко, Ренессанс, Прованс, Классицизм, Хай-тек — каталог пополняется постоянно.",
+        title: "Products in various styles",
+        text: "Products in various styles description",
       },
       {
-        title: "Материалы и технические описания",
-        text:
-          "Предоставляем рекламные материалы и каталоги покрытий для удобной работы с заказчиком.",
+        title: "Materials and technical descriptions",
+        text: "Materials and technical descriptions description",
       },
     ],
   },
 
   builders: {
-    heroTitle: "Готовые дверные блоки для строителей",
-    heroText:
-      "Вы приобретаете полностью готовый к установке блок: заводская врезка, чистая установка, экономия времени.",
+    heroTitle: "Ready-made door blocks for builders",
+    heroText: "Ready-made door blocks for builders description",
 
     perks: [
       {
-        title: "Короткие сроки",
-        text: "Экономия времени на формирование комплектности и подгон.",
+        title: "Short timelines",
+        text: "Short timelines description",
       },
       {
-        title: "Быстрая установка",
-        text: "Сокращение времени установки в 7 раз. Чистая установка, заводская врезка.",
+        title: "Fast installation",
+        text: "Fast installation description",
       },
       {
-        title: "Надежность",
-        text: "Усиленная конструкция полотна и короба. Высокая стойкость к механическим воздействиям.",
+        title: "Reliability",
+        text: "Reliability description",
       },
       {
-        title: "Звукоизоляция",
-        text: "Конструкция повышает результат звукоизоляции и сохраняет геометрию полотна.",
+        title: "Sound insulation",
+        text: "Sound insulation description",
       },
     ],
   },
-};
+}

@@ -93,7 +93,7 @@ const submitLead = async () => {
     isSubmitting.value = true;
 
     const payload = {
-      name: fullName.value,
+      fullName: fullName.value, 
       phone: `+${rawPhone.value}`,
       source: "callback_widget",
       page: window.location.pathname,
@@ -157,9 +157,9 @@ onUnmounted(() => {
           ×
         </button>
 
-        <h2 class="callbackTitle">У Вас остались вопросы?</h2>
+        <h2 class="callbackTitle">{{$t('Do you have any other questions?')}}</h2>
         <p class="callbackText">
-          Хотите, перезвоним вам за {{ secondsLeft }} секунд?
+          {{$t('Would you like to call you back for')}}{{ secondsLeft }}{{$t(' Seconds?')}}
         </p>
 
         <div class="callbackTimer">
@@ -195,13 +195,12 @@ onUnmounted(() => {
           {{ errorMessage }}
         </p>
 
-        <p v-if="isSuccess" class="callbackSuccess">Заявка отправлена</p>
+        <p v-if="isSuccess" class="callbackSuccess">{{$t('The application has been sent')}}</p>
 
         <div class="callbackDivider"></div>
 
         <p class="callbackPolicy">
-          Нажимая кнопку “Отправить”, вы подтверждаете своё согласие на
-          обработку персональных данных
+          {{$t('By clicking the “Submit” button, you confirm your consent to the processing of personal data.')}}
         </p>
       </div>
     </div>

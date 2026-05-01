@@ -4,32 +4,32 @@
       <div class="footer__grid">
         <div class="footer__brand">
           <RouterLink to="/" class="footer__logo">
-            <img src="@/assets/img/kokscha_logo_transparent.svg" alt="Ko'kcha" />
+            <img
+              src="@/assets/img/kokscha_logo_transparent.svg"
+              alt="Ko'kcha"
+            />
           </RouterLink>
           <p class="footer__text">
-            Современные двери и интерьерные решения. Подбор, доставка и монтаж под ключ.
+            {{ $t('Modern doors and interior design solutions. Selection, delivery, and turnkey installation.') }}
           </p>
         </div>
-
         <div class="footer__col">
-          <h3>Компания</h3>
-          <RouterLink :to="{ name: 'about' }">Компания</RouterLink>
-          <RouterLink :to="{ name: 'partners' }">Партнёры</RouterLink>
-          <RouterLink :to="{ name: 'products' }">Каталог</RouterLink>
-          <RouterLink :to="{ name: 'builders' }">Для строителей</RouterLink>
-           <RouterLink :to="{ name: 'designers' }">Для дизайнеров</RouterLink>
+          <h3>{{ $t("Company") }}</h3>
+          <RouterLink :to="{ name: 'about' }">{{ $t("Company") }}</RouterLink>
+          <RouterLink :to="{ name: 'products' }">{{ $t('Catalog') }}</RouterLink>
+          <RouterLink :to="{ name: 'partners' }">{{ $t('Cooperation') }}</RouterLink>
+          <RouterLink :to="{ name: 'builders' }">{{ $t('For builders') }}</RouterLink>
+          <RouterLink :to="{ name: 'designers' }">{{ $t('For designers') }}</RouterLink>
         </div>
-
         <div class="footer__col">
-          <h3>Контакты</h3>
+          <h3>{{$t('Contacts')}}</h3>
           <a href="tel:+998901301010">+998 90 130 10 10</a>
           <a href="mailto:info@kokscha.uz">info@kokscha.uz</a>
-          <p>Ташкент, Узбекистан</p>
+          <p>{{ $t('Tashkent Uzbekistan') }}</p>
         </div>
       </div>
-
       <div class="footer__bottom">
-        <span>© 2026 Ko'kcha. Все права защищены.</span>
+        <span>© 2026 Ko'kcha. {{ $t('All rights reserved.') }}</span>
       </div>
     </div>
   </footer>
@@ -54,7 +54,7 @@
   gap: 32px;
   padding-bottom: 28px;
 }
-.footer__brand{
+.footer__brand {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -63,7 +63,6 @@
 .footer__logo img {
   height: 60px;
   width: auto;
-  
 }
 
 .footer__text {

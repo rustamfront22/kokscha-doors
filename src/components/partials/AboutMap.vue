@@ -2,9 +2,9 @@
   <div class="map-card">
     <div class="map-card__head">
       <div>
-        <div class="map-card__title">Шоурум</div>
+        <div class="map-card__title">{{$t('Showroom')}}</div>
         <div class="map-card__text">
-          Ташкент, Шайхантахурский район, Себзар-7
+          {{$t('Tashkent, Shaikhantakhur district, Sebzar-7')}}
         </div>
       </div>
 
@@ -14,7 +14,7 @@
         rel="noreferrer"
         :href="openLink"
       >
-        Открыть
+        {{$t('Open')}}
       </a>
     </div>
 

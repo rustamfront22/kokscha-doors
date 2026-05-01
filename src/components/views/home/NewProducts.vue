@@ -2,7 +2,7 @@
   <div class="products__new">
     <div class="container">
       <div class="title flex justify-between mb-8">
-        Новинки
+        {{$t('New products')}}
         <div class="products__carousel">
           <div class="products__carousel-navigation flex justify-center gap-3">
             <button class="btn btn-secondary" @click.prevent="leftHandle"><Icon icon="fluent:arrow-up-16-filled" :rotate="3" /></button>

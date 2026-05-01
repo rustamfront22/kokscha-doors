@@ -1,13 +1,13 @@
 <template>
   <div class="products__all" >
     <div class="container">
-      <div class="title mb-8">Все товары</div>
+      <div class="title mb-8">{{$t('All products')}}</div>
       <div class="products__content">
         <Card v-for="data in products" :data="data" :key="data.id"/>
       </div>
       <button class="btn btn-secondary mx-auto mt-10" v-if="(skip + limit) < total" @click.prevent="moreProducts">
         <Icon icon="mingcute:down-line" />
-        Show more
+        {{$t('Show more')}}
       </button>
     </div>
   </div>

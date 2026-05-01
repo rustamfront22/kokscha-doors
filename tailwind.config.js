@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx,vue,scss}",
   ],
+  darkMode: 'selector',
   theme: {
     extend: {
       colors: {
@@ -11,6 +12,7 @@ export default {
         secondary: '#454D66',
         text: '#221E66',
         hover: '#1CBCDD',
+
       },
     },
     container: {

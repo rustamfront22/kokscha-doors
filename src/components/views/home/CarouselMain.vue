@@ -2,25 +2,24 @@
   <section class="hero">
     <div class="hero__left">
       <div class="hero__content">
-        <div class="hero__badge">НОВОСТИ</div>
+        <div class="hero__badge">{{$t('NEWS')}}</div>
 
         <h1 class="hero__title">
           KO'KCHA<br />
-          DOORS
+          {{$t('DOORS')}}
         </h1>
 
         <p class="hero__text">
-          Современные интерьерные и входные двери.
-          Подбор моделей, консультация, доставка и монтаж под ключ.
+          {{$t('Modern interior and entrance doors.  Model selection, consultation, turnkey delivery and installation.')}}
         </p>
 
         <div class="hero__actions">
           <RouterLink :to="{ name: 'products' }" class="hero__btn hero__btn--dark">
-            Каталог
+            {{$t('Catalog')}}
           </RouterLink>
 
           <a href="#lead-form" class="hero__btn hero__btn--light">
-            Подробнее
+            {{$t('More detailed')}}
           </a>
         </div>
       </div>

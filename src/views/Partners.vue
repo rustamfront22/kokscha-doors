@@ -42,36 +42,34 @@ onUnmounted(() => {
         <div class="kpis" data-reveal>
           <div class="kpi">
             <div class="kpi__num">4+</div>
-            <div class="kpi__text">года на рынке</div>
+            <div class="kpi__text">{{$t('years on the market')}}</div>
           </div>
           <div class="kpi">
-            <div class="kpi__num">10 лет</div>
-            <div class="kpi__text">гарантия на двери</div>
+            <div class="kpi__num">10 {{$t('years')}}</div>
+            <div class="kpi__text">{{$t('door warranty')}}</div>
           </div>
           <div class="kpi">
-            <div class="kpi__num">ГОСТ / ISO</div>
-            <div class="kpi__text">стандарты качества</div>
+            <div class="kpi__num">{{$t('GOST / ISO')}}</div>
+            <div class="kpi__text">{{$t('quality standards')}}</div>
           </div>
           <div class="kpi">
-            <div class="kpi__num">min / max</div>
-            <div class="kpi__text">изготовление под размер</div>
+            <div class="kpi__num">{{$t('min / max')}}</div>
+            <div class="kpi__text">{{$t('custom-made')}}</div>
           </div>
         </div>
 
         <div class="heroCard" data-reveal>
-          <div class="heroCard__badge">Партнёрская программа</div>
+          <div class="heroCard__badge">{{$t('Partner Program')}}</div>
           <h2 class="heroCard__title">
-            Сотрудничество, которое удобно для строительных проектов
+            {{$t('Cooperation that is convenient for construction projects')}}
           </h2>
           <p class="heroCard__text">
-            Мы поставляем межкомнатные двери для объектов и частных заказов,
-            сопровождаем партнёров на всех этапах и помогаем подобрать решения
-            под бюджет, формат проекта и сроки.
+           {{$t('We supply interior doors for facilities and private orders. We accompany our partners at all stages and help them find solutions. for the budget, project format and deadlines.')}}
           </p>
 
           <div class="heroCard__actions">
-            <a class="btn btn--primary">Оставить заявку</a>
-            <a class="btn btn--ghost" href="tel:+998901301010">Позвонить</a>
+            <a class="btn btn--primary">{{$t('Submit your application')}}</a>
+            <a class="btn btn--ghost" href="tel:+998901301010">{{$t('To call')}}</a>
           </div>
         </div>
 
@@ -79,86 +77,84 @@ onUnmounted(() => {
           <article class="card">
             <div class="card__top">
               <div class="icon">🤝</div>
-              <h3 class="card__title">Что мы предлагаем</h3>
+              <h3 class="card__title">{{$t('What we offer')}}</h3>
             </div>
 
             <ul class="list">
-              <li>Стабильные поставки и понятные сроки</li>
-              <li>Подбор моделей под объект</li>
-              <li>Скидки на объём и специальные условия</li>
-              <li>Консультации по ассортименту и комплектации</li>
-              <li>Поддержка на этапе согласования</li>
-              <li>Материалы для презентации клиентам</li>
+              <li>{{$t('Stable supplies and clear deadlines')}}</li>
+              <li>{{$t('Selection of models for the object')}}</li>
+              <li>{{$t('Volume discounts and special conditions')}}</li>
+              <li>{{$t('Consultations on assortment and configuration')}}</li>
+              <li>{{$t('Support at the approval stage')}}</li>
+              <li>{{$t('Presentation materials for clients')}}</li>
             </ul>
           </article>
 
           <article class="card">
             <div class="card__top">
               <div class="icon">🛠️</div>
-              <h3 class="card__title">Преимущества продукции</h3>
+              <h3 class="card__title">{{$t('Product Advantages')}}</h3>
             </div>
 
             <ul class="list">
-              <li>Изготовление под нестандартные размеры</li>
-              <li>Большой выбор моделей и покрытий</li>
-              <li>ПВХ-шпон, эмаль, патина</li>
-              <li>Комплексные интерьерные решения</li>
-              <li>Надёжная конструкция и современное производство</li>
-              <li>Короткие сроки изготовления</li>
+              <li>{{$t('Custom size manufacturing')}}</li>
+              <li>{{$t('A wide range of models and coatings')}}</li>
+              <li>{{$t('PVC veneer, enamel, patina')}}</li>
+              <li>{{$t('Comprehensive interior solutions')}}</li>
+              <li>{{$t('Reliable design and modern production')}}</li>
+              <li>{{$t('Short production time')}}</li>
             </ul>
           </article>
 
           <article class="card card--wide">
             <div class="card__top">
               <div class="icon">🏗️</div>
-              <h3 class="card__title">Кому подходит</h3>
+              <h3 class="card__title">{{$t('Suitable for whom')}}</h3>
             </div>
 
             <p class="muted">
-              Мы работаем со строителями, подрядчиками, салонами и компаниями,
-              которые комплектуют объекты дверями. Поставляем решения для
-              квартир, домов, коммерческих помещений и девелоперских проектов.
+              {{$t('We work with builders, contractors, salons, and companies that complete facilities with doors. We supply solutions for apartments, houses, commercial premises and development projects.')}}
             </p>
 
             <div class="chips">
-              <span class="chip">Комплектация объектов</span>
-              <span class="chip">Оптовые поставки</span>
-              <span class="chip">Салоны и секции</span>
-              <span class="chip">Подрядные организации</span>
+              <span class="chip">{{$t('Object configuration')}}</span>
+              <span class="chip">{{$t('Wholesale supplies')}}</span>
+              <span class="chip">{{$t('Salons and sections')}}</span>
+              <span class="chip">{{$t('Contracting organizations')}}</span>
             </div>
           </article>
         </div>
 
         <div class="steps" data-reveal>
           <div class="steps__head">
-            <h2 class="steps__title">Как начать сотрудничество</h2>
+            <h2 class="steps__title">{{$t('How to start a collaboration')}}</h2>
             <p class="steps__sub">
-              Быстрый и понятный процесс — от заявки до запуска поставок.
+              {{$t('A fast and clear process — from the application to the launch of deliveries.')}}
             </p>
           </div>
 
           <div class="steps__grid">
             <div class="step">
               <div class="step__n">01</div>
-              <div class="step__t">Оставьте заявку</div>
+              <div class="step__t">{{$t('Leave a request')}}</div>
               <div class="step__d">
-                Напишите, какой у вас проект, объём и что именно требуется.
+                {{$t('Write down what your project is, the scope, and what exactly is required.')}}
               </div>
             </div>
 
             <div class="step">
               <div class="step__n">02</div>
-              <div class="step__t">Согласуем условия</div>
+              <div class="step__t">{{$t('Well agree on the terms')}}</div>
               <div class="step__d">
-                Подберём ассортимент, отделки, сроки и удобный формат работы.
+                {{$t('We will select the assortment, finishes, terms and convenient format of work.')}}
               </div>
             </div>
 
             <div class="step">
               <div class="step__n">03</div>
-              <div class="step__t">Запускаем поставки</div>
+              <div class="step__t">{{$t('Launching deliveries')}}</div>
               <div class="step__d">
-                Сопровождаем проект и обеспечиваем стабильную комплектацию.
+                {{$t('We support the project and provide stable equipment.')}}
               </div>
             </div>
           </div>
