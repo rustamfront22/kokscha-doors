@@ -61,7 +61,7 @@
   gap: 15px;
 }
 .footer__logo img {
-  height: 60px;
+  height: 100px;
   width: auto;
 }
 

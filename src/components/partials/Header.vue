@@ -135,7 +135,7 @@ const mobileOpen = ref(false);
 }
 
 .header__logo img {
-  height: 56px;
+  height: 80px;
   width: auto;
   object-fit: contain;
 }
