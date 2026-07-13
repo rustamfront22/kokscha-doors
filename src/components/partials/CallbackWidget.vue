@@ -1,5 +1,8 @@
 <script setup>
 import { ref, onUnmounted } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const isOpen = ref(false);
 const fullName = ref("");
@@ -85,7 +88,7 @@ const submitLead = async () => {
   errorMessage.value = "";
 
   if (rawPhone.value.length !== 12) {
-    errorMessage.value = "Введите номер полностью";
+    errorMessage.value = t("Please enter the full phone number");
     return;
   }
 
@@ -123,7 +126,7 @@ const submitLead = async () => {
     }, 1500);
   } catch (error) {
     console.error("Submit lead error:", error);
-    errorMessage.value = "Не удалось отправить заявку";
+    errorMessage.value = t("Failed to send the request");
   } finally {
     isSubmitting.value = false;
   }
@@ -171,7 +174,7 @@ onUnmounted(() => {
           class="callbackInput"
           type="text"
           v-model="fullName"
-          placeholder="Ваше имя и фамилия"
+          :placeholder="$t('Full name')"
         />
 
         <input
@@ -188,7 +191,7 @@ onUnmounted(() => {
           :disabled="isSubmitting"
           @click="submitLead"
         >
-          {{ isSubmitting ? "Отправка..." : "Отправить" }}
+          {{ isSubmitting ? $t("Sending...") : $t("Send") }}
         </button>
 
         <p v-if="errorMessage" class="callbackError">

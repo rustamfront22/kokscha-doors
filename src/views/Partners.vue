@@ -33,8 +33,8 @@ onUnmounted(() => {
 <template>
   <div class="partners" :class="{ 'is-mounted': mounted }">
     <HeroSimple
-      title="Сотрудничество"
-      subtitle="Стабильные поставки, сопровождение объектов и выгодные условия для строительных компаний, подрядчиков и комплектаторов."
+      :title="$t('Cooperation')"
+      :subtitle="$t('Stable supplies, facility support and favorable terms for construction companies, contractors and fit-out teams.')"
     />
 
     <section class="section">

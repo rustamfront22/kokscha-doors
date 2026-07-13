@@ -29,6 +29,9 @@
 import { onMounted, ref } from "vue";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 // ✅ координаты Себзар-7 (приблизительно).
 // если захочешь точнее — просто заменишь числа.
@@ -65,7 +68,9 @@ onMounted(() => {
     popupAnchor: [0, -44],
   });
 
-  L.marker(center, { icon }).addTo(map).bindPopup("Ko'kcha eshiklar — шоурум");
+  L.marker(center, { icon })
+    .addTo(map)
+    .bindPopup(`Ko'kcha eshiklar — ${t("Showroom")}`);
 
   // если хочешь зум-кнопки — включим:
   // L.control.zoom({ position: "bottomright" }).addTo(map);

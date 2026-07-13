@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import i18n from "@/i18n";
 
 const api = axios.create({
   baseURL: "/api",
@@ -20,21 +21,21 @@ export const useProductStore = defineStore("product", () => {
   };
 
   const getProductsByCategory = async (category) => {
-  const { data } = await api.get("/doors");
+    const { data } = await api.get("/doors");
 
-  const list = Array.isArray(data) ? data : data.doors || [];
+    const list = Array.isArray(data) ? data : data.doors || [];
 
-  const filtered = list.filter((item) => item.type === category);
+    const filtered = list.filter((item) => item.type === category);
 
-  const mapped = filtered.map(mapDoorToProduct);
+    const mapped = filtered.map(mapDoorToProduct);
 
-  return {
-    data: {
-      products: mapped,
-      total: mapped.length,
-    },
+    return {
+      data: {
+        products: mapped,
+        total: mapped.length,
+      },
+    };
   };
-};
 
   const getProduct = async (id) => {
     try {
@@ -53,23 +54,23 @@ export const useProductStore = defineStore("product", () => {
     }
   };
 
- const getCategories = async () => {
-  const { data } = await api.get("/doors");
+  const getCategories = async () => {
+    const { data } = await api.get("/doors");
 
-  const list = Array.isArray(data) ? data : data.doors || [];
+    const list = Array.isArray(data) ? data : data.doors || [];
 
-  // берём type как категорию
-  const categories = [...new Set(list.map((item) => item.type))];
+    // берём type как категорию
+    const categories = [...new Set(list.map((item) => item.type))];
 
-  return { data: categories };
-};
+    return { data: categories };
+  };
 
   const mapDoorToProduct = (item) => {
     return {
       id: item.id,
 
       // 👇 главное изменение
-      title: `Модель ${item.model}`,
+      title: item.model,
 
       description: item.description || "",
 
@@ -77,9 +78,7 @@ export const useProductStore = defineStore("product", () => {
 
       discountPercentage: 0,
 
-      thumbnail: item.image
-        ? "https://crm-kukcha.vercel.app" + item.image
-        : "",
+      thumbnail: item.image ? "https://crm-kukcha.vercel.app" + item.image : "",
 
       category: item.type || "doors",
 
@@ -92,7 +91,6 @@ export const useProductStore = defineStore("product", () => {
       fill: item.fill,
     };
   };
-
 
   return { getProducts, getProduct, getCategories, getProductsByCategory };
 });

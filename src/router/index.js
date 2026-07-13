@@ -8,6 +8,8 @@ import About from "../views/About.vue";
 import Partners from "../views/Partners.vue";
 import Designers from "../views/Designers.vue";
 import Builders from "../views/Builders.vue";
+import Video from "../views/Video.vue";
+import OurPartners from "../views/OurPartners.vue";
 
 const routes = [
   { path: "/", component: Index, name: "index" },
@@ -17,6 +19,8 @@ const routes = [
   { path: "/partners", component: Partners, name: "partners" },
   { path: "/designers", component: Designers, name: "designers" },
   { path: "/builders", component: Builders, name: "builders" },
+  { path: "/video", component: Video, name: "video" },
+  { path: "/our-partners", component: OurPartners, name: "our-partners" },
 ];
 
 const router = createRouter({

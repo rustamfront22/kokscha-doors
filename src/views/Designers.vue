@@ -28,23 +28,23 @@ const c = companyContent;
 
 const perks = [
   {
-    title: "Каталоги и материалы",
-    text: "Каталоги покрытий, текстур и образцы для удобной работы с клиентом и презентации проекта.",
+    title: "Catalogs and materials",
+    text: "Catalogs of finishes, textures and samples for convenient client work and project presentation.",
     icon: "📦",
   },
   {
-    title: "Подбор под стиль",
-    text: "Подбираем двери под интерьер: классика, минимализм, современный стиль и сложные индивидуальные решения.",
+    title: "Matching the style",
+    text: "We select doors to match the interior: classic, minimalist, modern and complex custom solutions.",
     icon: "🎨",
   },
   {
-    title: "Декор в едином стиле",
-    text: "Наличники, карнизы, панели и другие элементы, чтобы интерьер выглядел цельно и аккуратно.",
+    title: "Decor in a unified style",
+    text: "Casings, cornices, panels and other elements so the interior looks cohesive and neat.",
     icon: "🧩",
   },
   {
-    title: "Индивидуальные размеры",
-    text: "Изготавливаем двери под проект клиента с учетом размеров, пожеланий и особенностей помещения.",
+    title: "Custom sizes",
+    text: "We manufacture doors for your project factoring in dimensions, preferences and room features.",
     icon: "📐",
   },
 ];
@@ -52,31 +52,31 @@ const perks = [
 const steps = [
   {
     n: "01",
-    t: "Запрос",
-    d: "Вы отправляете проект, референсы или описание задачи.",
+    t: "Request",
+    d: "You send your project, references or a description of the task.",
   },
   {
     n: "02",
-    t: "Подбор",
-    d: "Мы предлагаем модели, покрытия, декор и подходящие решения.",
+    t: "Selection",
+    d: "We offer models, finishes, decor and suitable solutions.",
   },
   {
     n: "03",
-    t: "Согласование",
-    d: "Уточняем детали, размеры, комплектацию и финальные материалы.",
+    t: "Approval",
+    d: "We clarify details, dimensions, configuration and final materials.",
   },
   {
     n: "04",
-    t: "Поставка",
-    d: "Организуем поставку и сопровождаем проект до результата.",
+    t: "Delivery",
+    d: "We organize delivery and support the project through to completion.",
   },
 ];
 
 const heroList = [
-  "Подбор под стиль интерьера",
-  "Каталоги и образцы",
-  "Декор в едином стиле",
-  "Индивидуальные размеры",
+  "Matching the style",
+  "Catalogs and samples",
+  "Decor in a unified style",
+  "Custom sizes",
 ];
 
 const goLead = () => {
@@ -130,7 +130,7 @@ const goLead = () => {
 
             <ul class="heroRight__list">
               <li v-for="(item, index) in heroList" :key="index">
-                {{ item }}
+                {{ $t(item) }}
               </li>
             </ul>
 
@@ -166,8 +166,8 @@ const goLead = () => {
         <div class="grid" data-reveal>
           <article class="card featureCard" v-for="(b, i) in c.designers.blocks" :key="i">
             <div class="featureCard__icon">✨</div>
-            <h3 class="featureCard__title">{{ b.title }}</h3>
-            <p class="featureCard__text">{{ b.text }}</p>
+            <h3 class="featureCard__title">{{ $t(b.title) }}</h3>
+            <p class="featureCard__text">{{ $t(b.text) }}</p>
           </article>
         </div>
       </div>
@@ -186,9 +186,9 @@ const goLead = () => {
           <article class="card perk" v-for="(p, idx) in perks" :key="idx">
             <div class="perk__top">
               <div class="perk__icon">{{ p.icon }}</div>
-              <div class="perk__title">{{ p.title }}</div>
+              <div class="perk__title">{{ $t(p.title) }}</div>
             </div>
-            <div class="perk__text">{{ p.text }}</div>
+            <div class="perk__text">{{ $t(p.text) }}</div>
           </article>
         </div>
       </div>
@@ -209,8 +209,8 @@ const goLead = () => {
           <div class="stepsGrid">
             <article class="step" v-for="(s, i) in steps" :key="i">
               <div class="step__num">{{ s.n }}</div>
-              <div class="step__title">{{ s.t }}</div>
-              <div class="step__text">{{ s.d }}</div>
+              <div class="step__title">{{ $t(s.t) }}</div>
+              <div class="step__text">{{ $t(s.d) }}</div>
             </article>
           </div>
 
